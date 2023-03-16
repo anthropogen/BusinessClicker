@@ -14,7 +14,7 @@ namespace Clicker.Infrastructure
             _states = states;
         }
 
-        public void Change<TState>() where TState : IGameState, new()
+        public void Change<TState>() where TState : class, IGameState
         {
             var type = typeof(TState);
             if (_states.TryGetValue(type, out var next))
