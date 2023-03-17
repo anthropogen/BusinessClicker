@@ -31,6 +31,7 @@
         {
             _serviceLocator.Register<ISceneLoadService>(new SceneLoadService(bootstrapper));
             _serviceLocator.Register<IPersistentDataService>(new PersistentDataService());
+            _serviceLocator.Register<IStaticDataService>(new StaticDataService());
         }
     }
 }
