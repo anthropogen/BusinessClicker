@@ -4,6 +4,5 @@ namespace Clicker.Components
     {
         UpgradeFirst,
         UpgradeSecond
-
     }
 }

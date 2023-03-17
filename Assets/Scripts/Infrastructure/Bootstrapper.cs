@@ -11,7 +11,7 @@ namespace Clicker.Infrastructure
         {
             DontDestroyOnLoad(gameObject);
             CreateGameStateMachine();
-
+            _stateMachine.Change<BootstrapState>();
         }
 
         private void Update()
@@ -28,7 +28,6 @@ namespace Clicker.Infrastructure
         {
             _serviceLocator = new ServiceLocator();
             _stateMachine = new GameStateMachine(_serviceLocator, this);
-            _stateMachine.Change<BootstrapState>();
         }
     }
 }

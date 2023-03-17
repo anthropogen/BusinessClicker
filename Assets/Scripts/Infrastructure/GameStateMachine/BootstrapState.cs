@@ -22,11 +22,6 @@
         {
         }
 
-        public void Run()
-        {
-
-        }
-
         private void RegiseterServices(Bootstrapper bootstrapper)
         {
             _serviceLocator.Register<ISceneLoadService>(new SceneLoadService(bootstrapper));

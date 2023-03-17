@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Clicker.Infrastructure
+﻿namespace Clicker.Infrastructure
 {
-    public class GameState : IGameState, IDisposable
+    public class GameState : IRunGameState
     {
         public void Enter()
         {
@@ -11,17 +9,12 @@ namespace Clicker.Infrastructure
 
         public void Exit()
         {
-
+            UnityEngine.Debug.Log("dispose game");
         }
 
         public void Run()
         {
 
-        }
-
-        public void Dispose()
-        {
-            UnityEngine.Debug.Log("dispose game");
         }
     }
 }

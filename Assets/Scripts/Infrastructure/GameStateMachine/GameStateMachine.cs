@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Clicker.Infrastructure
 {
@@ -8,7 +7,8 @@ namespace Clicker.Infrastructure
     {
         private readonly Dictionary<Type, IGameState> _states;
         private readonly ServiceLocator _serviceLocator;
-        private IGameState _current;
+        private IGameState _currentState;
+        private IRunGameState _currentRunState;
 
         public GameStateMachine(ServiceLocator serviceLocator, Bootstrapper bootstrapper)
         {
@@ -25,24 +25,19 @@ namespace Clicker.Infrastructure
             var type = typeof(TState);
             if (_states.TryGetValue(type, out var next))
             {
-                _current?.Exit();
-                _current = next;
-                _current.Enter();
+                _currentState?.Exit();
+                _currentState = next;
+                _currentState.Enter();
+                _currentRunState = next as IRunGameState;
             }
             else
                 throw new InvalidOperationException($"Doesn't have {type} state");
         }
 
         public void Run()
-            => _current?.Run();
+            => _currentRunState?.Run();
 
         public void Dispose()
-        {
-            foreach (var state in _states.Values.Where(s => s is IDisposable))
-            {
-                (state as IDisposable).Dispose();
-                UnityEngine.Debug.Log($"dispose state {state.ToString()}");
-            }
-        }
+            => _currentState.Exit();
     }
 }

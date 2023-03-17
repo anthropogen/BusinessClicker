@@ -1,11 +1,8 @@
-﻿using System;
-
-namespace Clicker.Infrastructure
+﻿namespace Clicker.Infrastructure
 {
-    public interface IGameState 
+    public interface IGameState
     {
         void Enter();
-        void Run();
         void Exit();
     }
 }
