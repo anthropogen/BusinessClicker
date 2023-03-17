@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Clicker.Infrastructure
@@ -11,7 +9,9 @@ namespace Clicker.Infrastructure
 
         private void Awake()
         {
+            DontDestroyOnLoad(gameObject);
             CreateGameStateMachine();
+
         }
 
         private void Update()
@@ -27,9 +27,7 @@ namespace Clicker.Infrastructure
         private void CreateGameStateMachine()
         {
             _serviceLocator = new ServiceLocator();
-            var states = new Dictionary<Type, IGameState>();
-            states[typeof(BootstrapState)] = new BootstrapState(_serviceLocator);
-            _stateMachine = new GameStateMachine(states);
+            _stateMachine = new GameStateMachine(_serviceLocator, this);
             _stateMachine.Change<BootstrapState>();
         }
     }

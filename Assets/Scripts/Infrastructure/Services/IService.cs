@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.Design;
-
-namespace Clicker.Infrastructure
+﻿namespace Clicker.Infrastructure
 {
     public interface IService
     {

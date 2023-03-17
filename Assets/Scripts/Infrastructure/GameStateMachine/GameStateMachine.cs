@@ -7,10 +7,16 @@ namespace Clicker.Infrastructure
     public sealed class GameStateMachine : IDisposable
     {
         private readonly Dictionary<Type, IGameState> _states;
+        private readonly ServiceLocator _serviceLocator;
         private IGameState _current;
 
-        public GameStateMachine(Dictionary<Type, IGameState> states)
+        public GameStateMachine(ServiceLocator serviceLocator, Bootstrapper bootstrapper)
         {
+            _serviceLocator = serviceLocator;
+            var states = new Dictionary<Type, IGameState>();
+            states[typeof(BootstrapState)] = new BootstrapState(this, _serviceLocator, bootstrapper);
+            states[typeof(LoadGameState)] = new LoadGameState(_serviceLocator.Release<ISceneLoadService>(), _serviceLocator.Release<IPersistentDataService>(), this);
+            states[typeof(GameState)] = new GameState();
             _states = states;
         }
 
@@ -34,6 +40,7 @@ namespace Clicker.Infrastructure
         {
             foreach (var state in _states.Values.Where(s => s is IDisposable))
             {
+                (state as IDisposable).Dispose();
                 UnityEngine.Debug.Log($"dispose state {state.ToString()}");
             }
         }
