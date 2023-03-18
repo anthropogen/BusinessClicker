@@ -9,8 +9,8 @@ namespace Clicker.Infrastructure
     {
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticDataService;
-        private EcsWorld ecsWorld;
-        private EcsSystems systems;
+        private EcsWorld _ecsWorld;
+        private EcsSystems _systems;
 
         public GameLoopState(IAssetProvider assetProvider, IStaticDataService staticDataService)
         {
@@ -20,28 +20,37 @@ namespace Clicker.Infrastructure
 
         public void Enter()
         {
-            ecsWorld = new EcsWorld();
-            systems = new EcsSystems(ecsWorld);
-
-            systems.Add(new CreateBusinessViewSystem(_assetProvider, _staticDataService));
-            systems.Add(new InitBusinessSystem());
-            systems.Add(new BusinessProgressSystem());
-
-            systems.OneFrame<NeedInitBusinessEvent>();
-
-            systems.ConvertScene();
-            systems.Init();
+            _ecsWorld = new EcsWorld();
+            _systems = new EcsSystems(_ecsWorld);
+            AddSystems();
+            AddOneFrameComponents();
+            _systems.ConvertScene();
+            _systems.Init();
         }
+
 
         public void Exit()
         {
-            systems.Destroy();
-            ecsWorld.Destroy();
+            _systems.Destroy();
+            _ecsWorld.Destroy();
         }
 
         public void Run()
         {
-            systems?.Run();
+            _systems?.Run();
+        }
+
+        private void AddOneFrameComponents()
+        {
+            _systems.OneFrame<NeedInitBusinessEvent>();
+            _systems.OneFrame<AddIncomeEvent>();
+        }
+
+        private void AddSystems()
+        {
+            _systems.Add(new CreateBusinessViewSystem(_assetProvider, _staticDataService));
+            _systems.Add(new InitBusinessSystem());
+            _systems.Add(new BusinessProgressSystem());
         }
     }
 }

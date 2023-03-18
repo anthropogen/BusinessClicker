@@ -10,11 +10,11 @@ namespace Clicker.Systems
     {
         private readonly EcsFilter<BusinessViewParent> parentFilter;
         private readonly IStaticDataService _staticDataService;
-        private IAssetProvider assetProvider;
+        private IAssetProvider _assetProvider;
 
         public CreateBusinessViewSystem(IAssetProvider assetProvider, IStaticDataService staticDataService)
         {
-            this.assetProvider = assetProvider;
+            _assetProvider = assetProvider;
             _staticDataService = staticDataService;
         }
 
@@ -26,9 +26,8 @@ namespace Clicker.Systems
 
                 foreach (var businessData in _staticDataService.GetAllBusinessDatas())
                 {
-                    var view = GameObject.Instantiate(assetProvider.BusinessViewTemplate, parent.Transform);
+                    var view = GameObject.Instantiate(_assetProvider.BusinessViewTemplate, parent.Transform);
                     view.GetComponent<BusinessStaticDataReferenceProvider>().Construct(businessData);
-
                 }
             }
         }
