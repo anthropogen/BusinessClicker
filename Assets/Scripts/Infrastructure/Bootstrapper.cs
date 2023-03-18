@@ -4,6 +4,7 @@ namespace Clicker.Infrastructure
 {
     public sealed class Bootstrapper : MonoBehaviour
     {
+        [SerializeField] private AssetProvider _assetProvider;
         private GameStateMachine _stateMachine;
         private ServiceLocator _serviceLocator;
 
@@ -27,7 +28,7 @@ namespace Clicker.Infrastructure
         private void CreateGameStateMachine()
         {
             _serviceLocator = new ServiceLocator();
-            _stateMachine = new GameStateMachine(_serviceLocator, this);
+            _stateMachine = new GameStateMachine(_serviceLocator,_assetProvider, this);
         }
     }
 }

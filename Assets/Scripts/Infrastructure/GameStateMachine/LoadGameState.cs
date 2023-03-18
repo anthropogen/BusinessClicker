@@ -22,7 +22,7 @@
             //
             //
 
-            _sceneLoadService.LoadLevel(GameLevel, () => _gameStateMachine.Change<GameState>());
+            _sceneLoadService.LoadLevel(GameLevel, () => _gameStateMachine.Change<GameLoopState>());
         }
 
         public void Exit()

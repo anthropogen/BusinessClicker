@@ -5,12 +5,12 @@
         private readonly ServiceLocator _serviceLocator;
         private readonly GameStateMachine _gameStateMachine;
 
-        public BootstrapState(GameStateMachine gameStateMachine, ServiceLocator serviceLocator, Bootstrapper bootstrapper)
+        public BootstrapState(GameStateMachine gameStateMachine, ServiceLocator serviceLocator, IAssetProvider _assetProvider, Bootstrapper bootstrapper)
         {
             _gameStateMachine = gameStateMachine;
             _serviceLocator = serviceLocator;
 
-            RegiseterServices(bootstrapper);
+            RegiseterServices(bootstrapper, _assetProvider);
         }
 
         public void Enter()
@@ -22,8 +22,9 @@
         {
         }
 
-        private void RegiseterServices(Bootstrapper bootstrapper)
+        private void RegiseterServices(Bootstrapper bootstrapper, IAssetProvider _assetProvider)
         {
+            _serviceLocator.Register(_assetProvider);
             _serviceLocator.Register<ISceneLoadService>(new SceneLoadService(bootstrapper));
             _serviceLocator.Register<IPersistentDataService>(new PersistentDataService());
             _serviceLocator.Register<IStaticDataService>(new StaticDataService());

@@ -1,7 +1,10 @@
 using Clicker.Components;
 using Voody.UniLeo;
 
-public class BusinessViewProvider:MonoProvider<BusinessView>
+namespace Clicker.Providers
 {
+    public class BusinessViewProvider : MonoProvider<BusinessView>
+    {
 
+    }
 }

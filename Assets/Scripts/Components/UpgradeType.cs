@@ -2,7 +2,7 @@ namespace Clicker.Components
 {
     public enum UpgradeType
     {
-        UpgradeFirst,
-        UpgradeSecond
+        UpgradeFirst = 0,
+        UpgradeSecond = 1
     }
 }
