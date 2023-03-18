@@ -1,3 +1,4 @@
+using Clicker.Components;
 using UnityEngine;
 
 namespace Clicker.StaticData
@@ -10,5 +11,14 @@ namespace Clicker.StaticData
         [field: SerializeField, Min(0)] public int BasePrice { get; private set; }
         [field: SerializeField, Min(0)] public int BaseIncome { get; private set; }
         [field: SerializeField] public BusinessUpgradeStaticData UpgradeData { get; private set; }
+
+        public float GetMultiplier(UpgradeType type, int level)
+        {
+            level--;
+            if (!UpgradeData.HasUpgradeFor(type, level))
+                return 0;
+
+            return UpgradeData.GetMultiplier(type, level).IncomeMultiplier;
+        }
     }
 }

@@ -6,14 +6,15 @@ namespace Clicker.Systems
 {
     public class InitBusinessSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<BusinessView, BusinessStaticDataReference, NeedInitBusinessEvent>.Exclude<Business> _filter = null;
+        private readonly EcsFilter<BusinessView, BusinessStaticDataReference, NeedInitBusinessEvent>.Exclude<BusinessLevel> _filter = null;
 
         public void Run()
         {
             foreach (var index in _filter)
             {
                 ref var entity = ref _filter.GetEntity(index);
-                entity.Get<Business>();
+                ref var business = ref entity.Get<BusinessLevel>();
+                business.UpgradeLevels = new int[2];
                 entity.Get<BusinessIncomeTimer>();
             }
         }

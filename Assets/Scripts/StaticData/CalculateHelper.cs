@@ -1,13 +1,11 @@
-﻿using UnityEngine;
-
-namespace Clicker.StaticData
+﻿namespace Clicker.StaticData
 {
     public static class CalculateHelper
     {
-        public static float CalculateIncome(int level, int baseIncome, float upgradeFirstPercent, float upgradeSecondPercent)
+        public static int CalculateIncome(int level, int baseIncome, float upgradeFirstPercent, float upgradeSecondPercent)
         {
             float income = level * baseIncome * (1 + upgradeFirstPercent + upgradeSecondPercent);
-            return Mathf.Round(income);
+            return (int)income;
         }
 
         public static float CalculateLevelPrice(int level, float basePrice)

@@ -1,8 +1,7 @@
 ﻿namespace Clicker.Components
 {
-    public struct Business
+    public struct BusinessLevel
     {
-        public int Income;
         public int Level;
         public int[] UpgradeLevels;
     }

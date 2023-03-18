@@ -6,7 +6,7 @@ namespace Clicker.StaticData
     public class MultiplierData
     {
         [field: SerializeField] public int Price { get; private set; }
-        [field: SerializeField] public int IncomeMultiplier { get; private set; }
+        [field: SerializeField] public float IncomeMultiplier { get; private set; }
     }
 
 }

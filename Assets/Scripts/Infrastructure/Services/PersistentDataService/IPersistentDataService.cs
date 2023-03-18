@@ -4,7 +4,7 @@ namespace Clicker.Infrastructure
 {
     public interface IPersistentDataService : IService
     {
-        PlayerSaveData PlayerData { get; }
+        PlayerData PlayerData { get; }
 
         void Load();
         void Save();

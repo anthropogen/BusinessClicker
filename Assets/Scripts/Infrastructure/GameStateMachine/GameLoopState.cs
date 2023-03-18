@@ -1,4 +1,5 @@
 ﻿using Clicker.Events;
+using Clicker.PersistentData;
 using Clicker.Systems;
 using Leopotam.Ecs;
 using Voody.UniLeo;
@@ -24,6 +25,9 @@ namespace Clicker.Infrastructure
             _systems = new EcsSystems(_ecsWorld);
             AddSystems();
             AddOneFrameComponents();
+
+            _systems.Inject(new PlayerData());
+
             _systems.ConvertScene();
             _systems.Init();
         }
@@ -51,6 +55,8 @@ namespace Clicker.Infrastructure
             _systems.Add(new CreateBusinessViewSystem(_assetProvider, _staticDataService));
             _systems.Add(new InitBusinessSystem());
             _systems.Add(new BusinessProgressSystem());
+            _systems.Add(new BusinessIncomeSystem());
+            _systems.Add(new UpdateBalanceSystem());
         }
     }
 }
