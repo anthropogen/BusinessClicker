@@ -16,7 +16,7 @@ namespace Clicker.Infrastructure
             var states = new Dictionary<Type, IGameState>();
             states[typeof(BootstrapState)] = new BootstrapState(this, _serviceLocator, _assetProvider, bootstrapper);
             states[typeof(LoadGameState)] = new LoadGameState(_serviceLocator.Release<ISceneLoadService>(), _serviceLocator.Release<IPersistentDataService>(), this);
-            states[typeof(GameLoopState)] = new GameLoopState(_assetProvider, _serviceLocator.Release<IStaticDataService>());
+            states[typeof(GameLoopState)] = new GameLoopState(_assetProvider, _serviceLocator.Release<IStaticDataService>(), _serviceLocator.Release<IPersistentDataService>());
             _states = states;
         }
 

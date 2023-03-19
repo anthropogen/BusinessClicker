@@ -1,5 +1,6 @@
 ﻿using Clicker.Components;
 using Clicker.Events;
+using Clicker.PersistentData;
 using Leopotam.Ecs;
 
 namespace Clicker.Systems
@@ -7,7 +8,8 @@ namespace Clicker.Systems
     public class InitBusinessSystem : IEcsRunSystem
     {
         private readonly EcsWorld _ecsWorld;
-        private readonly EcsFilter<BusinessView, BusinessStaticDataReference, NeedInitBusinessEvent>.Exclude<BusinessLevel> _filter = null;
+        private readonly PlayerData _playerData;
+        private readonly EcsFilter<BusinessView, BusinessStaticDataReference, NeedInitBusinessEvent>.Exclude<BusinessIncomeTimer> _filter = null;
 
         public void Run()
         {
@@ -17,8 +19,12 @@ namespace Clicker.Systems
             {
                 ref var entity = ref _filter.GetEntity(index);
                 ref var business = ref entity.Get<BusinessLevel>();
-                business.UpgradeLevels = new int[2];
-                entity.Get<BusinessIncomeTimer>();
+                ref var staticData = ref entity.Get<BusinessStaticDataReference>();
+                business = SetBusinessData(business, staticData);
+
+                if (business.Level > 0)
+                    entity.Get<BusinessIncomeTimer>();
+
                 entity.Get<IncomeChangedEvent>();
 
                 ref var view = ref entity.Get<BusinessView>();
@@ -27,6 +33,20 @@ namespace Clicker.Systems
 
             SendInitEvent();
 
+        }
+
+        private BusinessLevel SetBusinessData(BusinessLevel business, BusinessStaticDataReference staticData)
+        {
+            if (_playerData.Business.ContainsKey(staticData.StaticData.Name))
+            {
+                business = _playerData.Business[staticData.StaticData.Name];
+            }
+            else
+            {
+                business.UpgradeLevels = new int[staticData.StaticData.UpgradeData.Count];
+            }
+
+            return business;
         }
 
         private void SendInitEvent()

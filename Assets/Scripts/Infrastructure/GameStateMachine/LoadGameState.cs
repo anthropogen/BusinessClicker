@@ -17,11 +17,6 @@
         public void Enter()
         {
             _persistentDataService.Load();
-
-            //create game world;
-            //
-            //
-
             _sceneLoadService.LoadLevel(GameLevel, () => _gameStateMachine.Change<GameLoopState>());
         }
 

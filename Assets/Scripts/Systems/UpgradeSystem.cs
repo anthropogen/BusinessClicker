@@ -32,6 +32,7 @@ namespace Clicker.Systems
                     continue;
                 _playerData.Balance = Mathf.Max(0, _playerData.Balance - multiplier.Price);
                 levelData.UpgradeLevels[(int)upgradeType]++;
+                _playerData.Business[staticData.StaticData.Name] = levelData;
                 ent.Get<IncomeChangedEvent>();
             }
 

@@ -24,11 +24,15 @@ namespace Clicker.Systems
                 ref var view = ref _filter.Get1(index);
                 ref var staticData = ref _filter.Get2(index);
                 ref var levelData = ref _filter.Get3(index);
+              
                 var price = CalculateHelper.CalculateLevelPrice(levelData.Level, staticData.StaticData.BasePrice);
                 if (price > _playerData.Balance)
                     continue;
                 _playerData.Balance = Mathf.Max(0, _playerData.Balance - price);
                 levelData.Level++;
+                if (levelData.Level == 1)
+                    ent.Get<NeedInitBusinessEvent>();
+
                 view.LevelText.text = $"{levelData.Level}";
                 ent.Get<IncomeChangedEvent>();
             }

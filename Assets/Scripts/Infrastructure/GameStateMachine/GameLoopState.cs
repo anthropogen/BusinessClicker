@@ -1,5 +1,4 @@
 ﻿using Clicker.Events;
-using Clicker.PersistentData;
 using Clicker.Systems;
 using Leopotam.Ecs;
 using Leopotam.Ecs.UnityIntegration;
@@ -11,13 +10,15 @@ namespace Clicker.Infrastructure
     {
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticDataService;
+        private readonly IPersistentDataService _persistentDataService;
         private EcsWorld _ecsWorld;
         private EcsSystems _systems;
 
-        public GameLoopState(IAssetProvider assetProvider, IStaticDataService staticDataService)
+        public GameLoopState(IAssetProvider assetProvider, IStaticDataService staticDataService, IPersistentDataService persistentDataService)
         {
             _assetProvider = assetProvider;
             _staticDataService = staticDataService;
+            _persistentDataService = persistentDataService;
         }
 
         public void Enter()
@@ -27,7 +28,7 @@ namespace Clicker.Infrastructure
             AddSystems();
             AddOneFrameComponents();
 
-            _systems.Inject(new PlayerData());
+            _systems.Inject(_persistentDataService.PlayerData);
 
             _systems.ConvertScene();
             _systems.Init();

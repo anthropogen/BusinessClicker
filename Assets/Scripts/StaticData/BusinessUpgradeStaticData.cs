@@ -12,6 +12,8 @@ namespace Clicker.StaticData
 
         private Dictionary<UpgradeType, Dictionary<int, MultiplierData>> _upgradesDictionary;
 
+        public int Count => _upgradesDatas.Length;
+
         public bool HasUpgradeFor(UpgradeType type, int level)
         {
             CheckValidUpgradeDictionary();
