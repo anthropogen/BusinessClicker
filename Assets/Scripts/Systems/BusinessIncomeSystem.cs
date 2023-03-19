@@ -21,8 +21,8 @@ namespace Clicker.Systems
                 ref var staticData = ref entity.Get<BusinessStaticDataReference>();
                 ref var business = ref entity.Get<BusinessLevel>();
 
-                var firstPercent = staticData.StaticData.GetMultiplier(UpgradeType.UpgradeFirst, business.UpgradeLevels[0]);
-                var secondPercent = staticData.StaticData.GetMultiplier(UpgradeType.UpgradeSecond, business.UpgradeLevels[1]);
+                var firstPercent = staticData.StaticData.GetPercentMultiplier(UpgradeType.UpgradeFirst, business.UpgradeLevels[0]);
+                var secondPercent = staticData.StaticData.GetPercentMultiplier(UpgradeType.UpgradeSecond, business.UpgradeLevels[1]);
 
                 var income = CalculateHelper.CalculateIncome(business.Level, staticData.StaticData.BaseIncome, firstPercent, secondPercent);
                 _playerData.Balance = Mathf.Max(0, _playerData.Balance + income);

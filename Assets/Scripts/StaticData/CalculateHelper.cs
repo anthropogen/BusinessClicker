@@ -1,4 +1,6 @@
-﻿namespace Clicker.StaticData
+﻿using System;
+
+namespace Clicker.StaticData
 {
     public static class CalculateHelper
     {
@@ -8,7 +10,7 @@
             return (int)income;
         }
 
-        public static float CalculateLevelPrice(int level, float basePrice)
-            => (level + 1) * basePrice;
+        public static int CalculateLevelPrice(int level, float basePrice)
+            => Convert.ToInt32((level + 1) * basePrice);
     }
 }

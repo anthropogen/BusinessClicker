@@ -2,6 +2,7 @@
 using Clicker.PersistentData;
 using Clicker.Systems;
 using Leopotam.Ecs;
+using Leopotam.Ecs.UnityIntegration;
 using Voody.UniLeo;
 
 namespace Clicker.Infrastructure
@@ -30,6 +31,11 @@ namespace Clicker.Infrastructure
 
             _systems.ConvertScene();
             _systems.Init();
+
+#if UNITY_EDITOR
+            EcsWorldObserver.Create(_ecsWorld);
+            EcsSystemsObserver.Create(_systems);
+#endif
         }
 
 
@@ -48,6 +54,8 @@ namespace Clicker.Infrastructure
         {
             _systems.OneFrame<NeedInitBusinessEvent>();
             _systems.OneFrame<AddIncomeEvent>();
+            _systems.OneFrame<BalanceChangedEvent>();
+            _systems.OneFrame<BusinessInitializedEvent>();
         }
 
         private void AddSystems()
@@ -57,6 +65,7 @@ namespace Clicker.Infrastructure
             _systems.Add(new BusinessProgressSystem());
             _systems.Add(new BusinessIncomeSystem());
             _systems.Add(new UpdateBalanceSystem());
+            _systems.Add(new UpdateBusinessViewButtonsSystem());
         }
     }
 }

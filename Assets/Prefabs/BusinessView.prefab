@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 4189508403204299963}
   - component: {fileID: 4189508403204299962}
   - component: {fileID: 4189508403204299961}
-  - component: {fileID: 461338604431735927}
+  - component: {fileID: 1262993155179220880}
   m_Layer: 5
   m_Name: UpgradeFirst
   m_TagString: Untagged
@@ -471,7 +471,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &461338604431735927
+--- !u!114 &1262993155179220880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -480,10 +480,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4189508403204299959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4892c35fb1c741f4a8dd6c74593a44e2, type: 3}
+  m_Script: {fileID: 11500000, guid: d2e098487a56b47429561f6ffcdce3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 0
+  button: {fileID: 4189508403204299961}
+  _upgradeType: 0
+  priceText: {fileID: 4189508403235519233}
+  incomeText: {fileID: 4189508403737373329}
 --- !u!1 &4189508403235519263
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,7 +634,7 @@ GameObject:
   - component: {fileID: 4189508403319831614}
   - component: {fileID: 4189508403319831613}
   - component: {fileID: 4189508403319831612}
-  - component: {fileID: 2328732172049346881}
+  - component: {fileID: 1226672452529777019}
   m_Layer: 5
   m_Name: Upgrade Second
   m_TagString: Untagged
@@ -744,7 +747,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2328732172049346881
+--- !u!114 &1226672452529777019
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -753,10 +756,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4189508403319831610}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4892c35fb1c741f4a8dd6c74593a44e2, type: 3}
+  m_Script: {fileID: 11500000, guid: d2e098487a56b47429561f6ffcdce3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Type>k__BackingField: 1
+  button: {fileID: 4189508403319831612}
+  _upgradeType: 1
+  priceText: {fileID: 4189508404391531547}
+  incomeText: {fileID: 4189508404820394376}
 --- !u!1 &4189508403326974808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,6 +1148,10 @@ MonoBehaviour:
   value:
     <Title>k__BackingField: {fileID: 4189508404567545932}
     <ProgressFill>k__BackingField: {fileID: 4189508404784918933}
+    <UpLevelButton>k__BackingField: {fileID: 3842227576578612426}
+    <UpgradeButtons>k__BackingField:
+    - {fileID: 1262993155179220880}
+    - {fileID: 1226672452529777019}
 --- !u!114 &-1483919323543582557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2195,6 +2205,7 @@ GameObject:
   - component: {fileID: 4189508404774814987}
   - component: {fileID: 4189508404774814986}
   - component: {fileID: 4189508404774814985}
+  - component: {fileID: 3842227576578612426}
   m_Layer: 5
   m_Name: LevelUpButton
   m_TagString: Untagged
@@ -2306,6 +2317,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3842227576578612426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189508404774814983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fee5156b0665bc45a4062efca7f88cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 4189508404774814985}
+  priceText: {fileID: 4189508403629170437}
 --- !u!1 &4189508404784918931
 GameObject:
   m_ObjectHideFlags: 0

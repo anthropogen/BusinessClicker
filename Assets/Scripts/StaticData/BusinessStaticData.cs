@@ -12,13 +12,25 @@ namespace Clicker.StaticData
         [field: SerializeField, Min(0)] public int BaseIncome { get; private set; }
         [field: SerializeField] public BusinessUpgradeStaticData UpgradeData { get; private set; }
 
-        public float GetMultiplier(UpgradeType type, int level)
+        public bool HasMultiplier(UpgradeType type, int level)
+            => UpgradeData.HasUpgradeFor(type, level);
+
+
+        public float GetPercentMultiplier(UpgradeType type, int level)
         {
             level--;
             if (!UpgradeData.HasUpgradeFor(type, level))
                 return 0;
 
-            return UpgradeData.GetMultiplier(type, level).IncomeMultiplier;
+            return UpgradeData.GetMultiplier(type, level).IncomeMultiplier / 100;
+        }
+
+        public MultiplierData GetMultipier(UpgradeType type, int level)
+        {
+            if (!UpgradeData.HasUpgradeFor(type, level))
+                return null;
+
+            return UpgradeData.GetMultiplier(type, level);
         }
     }
 }
