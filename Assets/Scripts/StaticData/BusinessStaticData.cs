@@ -11,6 +11,7 @@ namespace Clicker.StaticData
         [field: SerializeField, Min(0)] public int BasePrice { get; private set; }
         [field: SerializeField, Min(0)] public int BaseIncome { get; private set; }
         [field: SerializeField] public BusinessUpgradeStaticData UpgradeData { get; private set; }
+        [field: SerializeField] public bool IsAvailable { get; private set; }
 
         public bool HasMultiplier(UpgradeType type, int level)
             => UpgradeData.HasUpgradeFor(type, level);

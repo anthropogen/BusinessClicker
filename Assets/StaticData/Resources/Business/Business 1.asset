@@ -17,3 +17,4 @@ MonoBehaviour:
   <BasePrice>k__BackingField: 3
   <BaseIncome>k__BackingField: 3
   <UpgradeData>k__BackingField: {fileID: 11400000, guid: 71abe130ed219bf4f93228dfea03901a, type: 2}
+  <IsAvailable>k__BackingField: 1

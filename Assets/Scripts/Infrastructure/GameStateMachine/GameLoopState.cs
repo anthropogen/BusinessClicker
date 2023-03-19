@@ -1,8 +1,8 @@
 ﻿using Clicker.Events;
 using Clicker.Systems;
 using Leopotam.Ecs;
-using Leopotam.Ecs.UnityIntegration;
 using Voody.UniLeo;
+
 
 namespace Clicker.Infrastructure
 {
@@ -34,8 +34,8 @@ namespace Clicker.Infrastructure
             _systems.Init();
 
 #if UNITY_EDITOR
-            EcsWorldObserver.Create(_ecsWorld);
-            EcsSystemsObserver.Create(_systems);
+            Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create(_ecsWorld);
+            Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create(_systems);
 #endif
         }
 

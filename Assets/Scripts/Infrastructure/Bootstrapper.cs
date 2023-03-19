@@ -5,11 +5,13 @@ namespace Clicker.Infrastructure
     public sealed class Bootstrapper : MonoBehaviour
     {
         [SerializeField] private AssetProvider _assetProvider;
+        [SerializeField] private PersistentMonoProvider persistentMono;
         private GameStateMachine _stateMachine;
         private ServiceLocator _serviceLocator;
 
         private void Awake()
         {
+            Application.targetFrameRate = 60;
             DontDestroyOnLoad(gameObject);
             CreateGameStateMachine();
             _stateMachine.Change<BootstrapState>();
@@ -28,7 +30,7 @@ namespace Clicker.Infrastructure
         private void CreateGameStateMachine()
         {
             _serviceLocator = new ServiceLocator();
-            _stateMachine = new GameStateMachine(_serviceLocator,_assetProvider, this);
+            _stateMachine = new GameStateMachine(_serviceLocator, _assetProvider, persistentMono, this);
         }
     }
 }

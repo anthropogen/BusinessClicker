@@ -24,7 +24,7 @@ namespace Clicker.Systems
                 ref var view = ref _filter.Get1(index);
                 ref var staticData = ref _filter.Get2(index);
                 ref var levelData = ref _filter.Get3(index);
-              
+
                 var price = CalculateHelper.CalculateLevelPrice(levelData.Level, staticData.StaticData.BasePrice);
                 if (price > _playerData.Balance)
                     continue;
@@ -35,6 +35,7 @@ namespace Clicker.Systems
 
                 view.LevelText.text = $"{levelData.Level}";
                 ent.Get<IncomeChangedEvent>();
+                _playerData.Business[staticData.StaticData.Name] = levelData;
             }
 
             var entity = _ecsWorld.NewEntity();

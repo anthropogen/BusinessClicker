@@ -28,11 +28,10 @@ namespace Clicker.Systems
                 entity.Get<IncomeChangedEvent>();
 
                 ref var view = ref entity.Get<BusinessView>();
+                view.LevelText.text = business.Level.ToString();
                 ConstructButtons(ref entity, ref view);
             }
-
             SendInitEvent();
-
         }
 
         private BusinessLevel SetBusinessData(BusinessLevel business, BusinessStaticDataReference staticData)
@@ -44,8 +43,9 @@ namespace Clicker.Systems
             else
             {
                 business.UpgradeLevels = new int[staticData.StaticData.UpgradeData.Count];
+                if (staticData.StaticData.IsAvailable)
+                    business.Level++;
             }
-
             return business;
         }
 

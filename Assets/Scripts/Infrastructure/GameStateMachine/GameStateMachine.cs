@@ -10,11 +10,11 @@ namespace Clicker.Infrastructure
         private IGameState _currentState;
         private IRunGameState _currentRunState;
 
-        public GameStateMachine(ServiceLocator serviceLocator, IAssetProvider _assetProvider, Bootstrapper bootstrapper)
+        public GameStateMachine(ServiceLocator serviceLocator, IAssetProvider _assetProvider, PersistentMonoProvider persistentMono, Bootstrapper bootstrapper)
         {
             _serviceLocator = serviceLocator;
             var states = new Dictionary<Type, IGameState>();
-            states[typeof(BootstrapState)] = new BootstrapState(this, _serviceLocator, _assetProvider, bootstrapper);
+            states[typeof(BootstrapState)] = new BootstrapState(this, _serviceLocator, _assetProvider,persistentMono, bootstrapper);
             states[typeof(LoadGameState)] = new LoadGameState(_serviceLocator.Release<ISceneLoadService>(), _serviceLocator.Release<IPersistentDataService>(), this);
             states[typeof(GameLoopState)] = new GameLoopState(_assetProvider, _serviceLocator.Release<IStaticDataService>(), _serviceLocator.Release<IPersistentDataService>());
             _states = states;

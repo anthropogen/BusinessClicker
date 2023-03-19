@@ -11,12 +11,22 @@ namespace Clicker.Infrastructure
 
         public void Load()
         {
-            PlayerData = new PlayerData();
+            if (!PlayerPrefs.HasKey(SavePath))
+            {
+                PlayerData = new PlayerData();
+                return;
+            }
+            PlayerData = PlayerPrefs.GetString(SavePath).
+                FromJson().
+                ToPlayerData();
         }
 
         public void Save()
         {
-
+            var json = PlayerData.ToPlayerSaveData()
+                .ToJson();
+            PlayerPrefs.SetString(SavePath, json);
+            PlayerPrefs.Save();
         }
     }
 }
