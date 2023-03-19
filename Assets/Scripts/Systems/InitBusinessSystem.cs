@@ -19,6 +19,7 @@ namespace Clicker.Systems
                 ref var business = ref entity.Get<BusinessLevel>();
                 business.UpgradeLevels = new int[2];
                 entity.Get<BusinessIncomeTimer>();
+                entity.Get<IncomeChangedEvent>();
 
                 ref var view = ref entity.Get<BusinessView>();
                 ConstructButtons(ref entity, ref view);

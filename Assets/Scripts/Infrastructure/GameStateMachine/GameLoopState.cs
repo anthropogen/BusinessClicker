@@ -57,6 +57,7 @@ namespace Clicker.Infrastructure
             _systems.OneFrame<BalanceChangedEvent>();
             _systems.OneFrame<BusinessInitializedEvent>();
             _systems.OneFrame<UpBusinessLevelEvent>();
+            _systems.OneFrame<IncomeChangedEvent>();
         }
 
         private void AddSystems()
@@ -68,6 +69,7 @@ namespace Clicker.Infrastructure
             _systems.Add(new BusinessIncomeSystem());
             _systems.Add(new UpdateBalanceSystem());
             _systems.Add(new UpdateBusinessViewButtonsSystem());
+            _systems.Add(new UpdateIncomeViewSystem());
         }
     }
 }
