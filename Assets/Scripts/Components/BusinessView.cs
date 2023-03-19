@@ -9,6 +9,8 @@ namespace Clicker.Components
     public struct BusinessView
     {
         [field: SerializeField] public TMP_Text Title { get; private set; }
+        [field: SerializeField] public TMP_Text IncomeText { get; private set; }
+        [field: SerializeField] public TMP_Text LevelText { get; private set; }
         [field: SerializeField] public Slider ProgressFill { get; private set; }
         [field: SerializeField] public UpBusinessLevelButton UpLevelButton { get; private set; }
         [field: SerializeField] public UpgradeBusinessButton[] UpgradeButtons { get; private set; }

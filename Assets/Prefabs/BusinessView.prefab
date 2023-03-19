@@ -1147,6 +1147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value:
     <Title>k__BackingField: {fileID: 4189508404567545932}
+    <IncomeText>k__BackingField: {fileID: 4189508404594341202}
+    <LevelText>k__BackingField: {fileID: 4189508404061446461}
     <ProgressFill>k__BackingField: {fileID: 4189508404784918933}
     <UpLevelButton>k__BackingField: {fileID: 3842227576578612426}
     <UpgradeButtons>k__BackingField:

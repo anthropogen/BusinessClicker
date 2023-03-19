@@ -25,7 +25,6 @@ namespace Clicker.UI
         {
             if (Entity.IsNull())
                 throw new NullReferenceException("Entity is not initialized");
-
             ConstructEvent(Entity.Get<TEvent>());
         }
     }

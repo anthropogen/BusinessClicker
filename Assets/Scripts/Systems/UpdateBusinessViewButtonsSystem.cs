@@ -18,7 +18,6 @@ namespace Clicker.Systems
         {
             if (!IsNeedUpdate())
                 return;
-
             foreach (var index in _businessFilter)
             {
                 ref var view = ref _businessFilter.Get1(index);

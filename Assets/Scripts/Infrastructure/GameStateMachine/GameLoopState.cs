@@ -56,10 +56,12 @@ namespace Clicker.Infrastructure
             _systems.OneFrame<AddIncomeEvent>();
             _systems.OneFrame<BalanceChangedEvent>();
             _systems.OneFrame<BusinessInitializedEvent>();
+            _systems.OneFrame<UpBusinessLevelEvent>();
         }
 
         private void AddSystems()
         {
+            _systems.Add(new LevelUpBusinessSystem());
             _systems.Add(new CreateBusinessViewSystem(_assetProvider, _staticDataService));
             _systems.Add(new InitBusinessSystem());
             _systems.Add(new BusinessProgressSystem());

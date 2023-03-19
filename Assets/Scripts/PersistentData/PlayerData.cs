@@ -2,6 +2,6 @@
 {
     public class PlayerData
     {
-        public int Balance;
+        public int Balance = 10000;
     }
 }

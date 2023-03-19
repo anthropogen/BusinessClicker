@@ -7,9 +7,8 @@ namespace Clicker.Systems
 {
     public class UpdateBalanceSystem : IEcsRunSystem, IEcsInitSystem
     {
-        private readonly EcsWorld _ecsWorld;
-        private readonly EcsFilter<BalanceView> _balanceFilter;
-        private readonly EcsFilter<AddIncomeEvent> _incomeFilter;
+        private readonly EcsFilter<BalanceView> _balanceViewFilter;
+        private readonly EcsFilter<BalanceChangedEvent> _changedBalanceFilter;
         private readonly PlayerData _playerData;
 
         public void Init()
@@ -19,7 +18,7 @@ namespace Clicker.Systems
 
         public void Run()
         {
-            if (_incomeFilter.GetEntitiesCount() < 1)
+            if (_changedBalanceFilter.GetEntitiesCount() < 1)
                 return;
 
             UpdateBalanceView();
@@ -28,18 +27,11 @@ namespace Clicker.Systems
 
         private void UpdateBalanceView()
         {
-            foreach (var index in _balanceFilter)
+            foreach (var index in _balanceViewFilter)
             {
-                ref var view = ref _balanceFilter.Get1(index);
+                ref var view = ref _balanceViewFilter.Get1(index);
                 view.Counter.text = $"{_playerData.Balance}$";
             }
-            SendBalanceChangedEvent();
-        }
-
-        private void SendBalanceChangedEvent()
-        {
-            var entity = _ecsWorld.NewEntity();
-            entity.Get<BalanceChangedEvent>();
         }
     }
 }
