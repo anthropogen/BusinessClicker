@@ -45,7 +45,7 @@ namespace Clicker.Systems
                 }
 
                 var multiplier = staticData.StaticData.GetMultipier(button.UpgradeType, levelData.UpgradeLevels[(int)button.UpgradeType]);
-                button.SetInteractable(multiplier.Price <= _playerData.Balance);
+                button.SetInteractable(multiplier.Price <= _playerData.Balance && levelData.Level > 0);
                 button.SetPrice(multiplier.Price);
                 button.SetMultiplier(multiplier.IncomeMultiplier);
             }

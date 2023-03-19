@@ -19,8 +19,8 @@ namespace Clicker.Systems
 
                 var firstPercent = staticData.StaticData.GetPercentMultiplier(UpgradeType.UpgradeFirst, business.UpgradeLevels[0]);
                 var secondPercent = staticData.StaticData.GetPercentMultiplier(UpgradeType.UpgradeSecond, business.UpgradeLevels[1]);
-
-                var income = CalculateHelper.CalculateIncome(business.Level, staticData.StaticData.BaseIncome, firstPercent, secondPercent);
+                int level = business.Level > 0 ? business.Level : 1;
+                var income = CalculateHelper.CalculateIncome(level, staticData.StaticData.BaseIncome, firstPercent, secondPercent);
                 view.IncomeText.text = $"{income}$";
             }
         }

@@ -12,7 +12,7 @@ namespace Clicker.UI
         [SerializeField] private TMP_Text incomeText;
         public UpgradeType UpgradeType => _upgradeType;
 
-        protected override void ConstructEvent(UpgradeBusinessEvent @event)
+        protected override void ConstructEvent(ref UpgradeBusinessEvent @event)
             => @event.UpgradeType = _upgradeType;
 
         public void SetPrice(int price)

@@ -15,5 +15,5 @@ MonoBehaviour:
   <Name>k__BackingField: "\u0411\u0438\u0437\u043D\u0435\u0441\u0441 1"
   <IncomeDelay>k__BackingField: 3
   <BasePrice>k__BackingField: 3
-  <BaseIncome>k__BackingField: 4
+  <BaseIncome>k__BackingField: 3
   <UpgradeData>k__BackingField: {fileID: 11400000, guid: 71abe130ed219bf4f93228dfea03901a, type: 2}

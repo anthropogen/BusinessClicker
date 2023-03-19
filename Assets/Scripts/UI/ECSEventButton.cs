@@ -15,7 +15,7 @@ namespace Clicker.UI
         private void OnDisable()
             => button.onClick.RemoveListener(() => SendEvent());
 
-        protected virtual void ConstructEvent(TEvent @event) { }
+        protected virtual void ConstructEvent(ref TEvent @event) { }
 
 
         public void SetInteractable(bool isActive)
@@ -25,7 +25,7 @@ namespace Clicker.UI
         {
             if (Entity.IsNull())
                 throw new NullReferenceException("Entity is not initialized");
-            ConstructEvent(Entity.Get<TEvent>());
+            ConstructEvent(ref Entity.Get<TEvent>());
         }
     }
 }
